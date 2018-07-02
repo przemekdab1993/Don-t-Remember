@@ -14,7 +14,6 @@ body
 	background-color: #1a0000;
 	border: 8px double #e60000;
 	border-radius: 50px;
-	line-height: 40%;
 }
 #logo h1
 {
@@ -59,6 +58,7 @@ a
 	display: block;
 }
 ul li:hover
+
 {
 	border: 1px solid #ffff00;
 	background-color: #990000;
@@ -80,4 +80,31 @@ ul li:first-child:hover
 footer
 {
 	text-align: center;
+}
+#game
+{
+	width: 60%;
+	margin: auto;
+}
+.cards_0
+{
+	display: inline-block;
+	width: calc(25% - 10px);
+	white-space: all;
+	height: 100px;
+	background-color: blue;
+	margin: 5px;
+	text-align: center;
+	line-height: 100px;
+}
+.cards_1
+{
+	display: inline-block;
+	width: calc(25% - 10px);
+	white-space: all;
+	height: 100px;
+	background-color: red;
+	margin: 5px;
+	text-align: center;
+	line-height: 100px;
 }
