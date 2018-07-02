@@ -1,0 +1,110 @@
+body
+{
+	background-color: #000;
+	font-size: 18px;
+	margin: 0px;
+	color: #fff;
+}
+#logo
+{
+	text-align: center;
+	width: 60%;
+	margin: auto;
+	padding: 20px;
+	background-color: #1a0000;
+	border: 8px double #e60000;
+	border-radius: 50px;
+}
+#logo h1
+{
+	font-size: 300%;
+	letter-spacing: 3px;
+	word-spacing: 10px;
+}
+#logo span
+{
+	font-size: 80%;
+	padding-right: 26%;
+	float: right;
+}
+ul
+{
+	list-style-type: none;
+	margin: 10px 0px 0px 0px;
+	padding: 0px;
+	display: flex;
+	background-color: #1a0000;
+}
+ul li
+{
+	text-align: center;
+	flex: 20%;
+	padding: 10px;
+	border: 1px solid #1a0000;
+	border-left: 2px dashed #e60000;
+	transition: background-color 1.2s;
+	letter-spacing: 1px;
+}
+ul li:first-child
+{
+	border: none;
+	border: 1px solid #1a0000;
+	padding: 10px 11px;
+}
+a 
+{
+	text-decoration: none;
+	color: #fff;
+	display: block;
+}
+ul li:hover
+
+{
+	border: 1px solid #ffff00;
+	background-color: #990000;
+	padding-left: 11px;
+	padding-top: 12px;
+	border-radius: 1px;
+}
+ul li:first-child:hover
+{
+	border: 1px solid #ffff00;
+	background-color: #990000;
+}
+#main_container
+{
+	width: 80%;
+	min-height: 400px;
+	margin: auto;
+}
+footer
+{
+	text-align: center;
+}
+#game
+{
+	width: 60%;
+	margin: auto;
+}
+.cards_0
+{
+	display: inline-block;
+	width: calc(25% - 10px);
+	white-space: all;
+	height: 100px;
+	background-color: blue;
+	margin: 5px;
+	text-align: center;
+	line-height: 100px;
+}
+.cards_1
+{
+	display: inline-block;
+	width: calc(25% - 10px);
+	white-space: all;
+	height: 100px;
+	background-color: red;
+	margin: 5px;
+	text-align: center;
+	line-height: 100px;
+}
