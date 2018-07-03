@@ -2,7 +2,7 @@ var lista_kart =  ['<i class="icon-mic-outline"></i>', '<i class="icon-mic"></i>
 					'<i class="icon-thumbs-up"></i>', '<i class="icon-thumbs-down"></i>', '<i class="icon-home"></i>', '<i class="icon-bell"></i>', 
 					'<i class="icon-female"></i>', '<i class="icon-male"></i>', '<i class="icon-paw"></i>', '<i class="icon-soccer-ball"></i>',
 					'<i class="icon-bicycle"></i>', '<i class="icon-diamond"></i>'];
-var wylosowane = [];
+var wylosowane;
 var $dane_wy;	
 var $cursor = $('#game');
 var $klik;
@@ -14,21 +14,44 @@ var punkty = 10;
 var rekord = 10;
 
 function losuj_karty()
-{
-	for (var i = 0; i < 16; i++)
+{	
+	wylosowane = [];
+	for (var i = 0; i < 8; i++)
 	{
-		var los = Math.floor(Math.random() * 9);
-		wylosowane[i] = lista_kart[los];	
+		var los_1 = Math.floor(Math.random() * 14);
+		var los_2 = Math.floor(Math.random() * 16);
+		while(wylosowane[los_2] !== undefined)
+		{
+			los_2++;
+			if (los_2 > 15)
+			{
+				los_2 = 0;
+			}
+		}
+		wylosowane[los_2] = lista_kart[los_1];
+		var los_3 = Math.floor(Math.random() * 16);
+		while(wylosowane[los_3] !== undefined)
+		{
+			los_3--;
+			if (los_3 < 0)
+			{
+				los_3 = 15;
+			}
+		}
+		wylosowane[los_3] = lista_kart[los_1];
 	}
 	number_lvl++;
 }
 function wypisz_wymaluj()
 {
+	$cursor.html('');
 	for (var i = 0; i < wylosowane.length; i++)
 	{
 		var buf = '<div id="' + i + '" class="cards_0 cards_1"></div>';
 		$cursor.append(buf);
 	}
+	$klik = $('.cards_1');
+	$klik.on('click', function(e) { odkryj(e); } );
 }
 function reset_pary()
 {	
@@ -76,12 +99,12 @@ function odkryj(e)
 			if ($karta_1.html() === $karta_2.html())
 			{
 				ukrycie_pary();
-				punkty += 5 * number_lvl;
+				punkty += 5 + (5 * Math.floor(number_lvl / 2));
 				wyniki(); 
 			}
 			else
 			{
-				setTimeout(function() { reset_pary(); },1800);
+				setTimeout(function() { reset_pary(); },1600);
 				punkty -= 1 * number_lvl;
 				wyniki(); 
 			}
@@ -93,20 +116,23 @@ function odkryj(e)
 function wyniki()
 {
 	$('#punkty').text(punkty);
-	$('#number_lvl').text(number_lvl);
+	
 	if (parseInt($('#punkty').text()) > parseInt($('#record_0').text()))
 	{
 		$('#record_0').text($('#punkty').text());
 	}
+	if ($('.cards_1').length == 0)
+	{
+		losuj_karty();
+		wypisz_wymaluj();
+	}
+	$('#number_lvl').text(number_lvl);
 }
 $( function() 
 {
 	$('#user_name').text(user_name);
 	$('#record_0').text(rekord);
-	
 	losuj_karty();
 	wypisz_wymaluj();
 	wyniki();
-	$klik = $('.cards_1');
-	$klik.on('click', function(e) { odkryj(e); } );
 });

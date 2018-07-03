@@ -1,12 +1,14 @@
 body
 {
 	background-color: #000;
-	font-size: 18px;
+	font-size: 20px;
 	margin: 0px;
 	color: #fff;
+	font-family: 'Chela One', cursive;
 }
 #logo
 {
+	font-family: 'Righteous', cursive;
 	text-align: center;
 	width: 60%;
 	margin: auto;
@@ -29,6 +31,7 @@ body
 }
 ul
 {
+	
 	list-style-type: none;
 	margin: 10px 0px 0px 0px;
 	padding: 0px;
@@ -44,6 +47,7 @@ ul li
 	border-left: 2px dashed #e60000;
 	transition: background-color 1.2s;
 	letter-spacing: 1px;
+	text-transform: uppercase;
 }
 ul li:first-child
 {
@@ -89,6 +93,7 @@ ul li:first-child:hover
 	border-radius: 40px;
 	vertical-align: text-bottom;
 	margin: 0px 2%;
+	letter-spacing: 1px;
 }
 #game_container
 {
@@ -132,9 +137,5 @@ ul li:first-child:hover
 footer
 {
 	text-align: center;
-}
-section
-{
-	margin: 0px;
-	padding: 0px;
+	font-size: 80%;
 }
