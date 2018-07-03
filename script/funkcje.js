@@ -18,19 +18,21 @@ function wypisz_wymaluj()
 {
 	for (var i = 0; i < wylosowane.length; i++)
 	{
-		var buf = '<div id="' + wylosowane[i] + '" class="cards_0">' + wylosowane[i] + '</div>';
+		var buf = '<div id="' + i + '" class="cards_0 cards_1"></div>';
 		$cursor.append(buf);
 	}
 }
 function reset_pary()
 {
-	$karta_1.addClass('cards_0');
-	$karta_1.removeClass('cards_1');
+	$karta_1.addClass('cards_1');
+	$karta_1.removeClass('cards_2');
 	$karta_1.on('click', function(e) { odkryj(e); } );
-	$karta_2.addClass('cards_0');
-	$karta_2.removeClass('cards_1');
+	$karta_2.addClass('cards_1');
+	$karta_2.removeClass('cards_2');
 	$karta_2.on('click', function(e) { odkryj(e); } );
 	licznik_odkrytych = 0;
+	$karta_1.text('');
+	$karta_2.text('');
 	$karta_1 = '';
 	$karta_2 = '';
 }
@@ -48,18 +50,19 @@ function odkryj(e)
 	switch(licznik_odkrytych)
 	{
 		case 0:
-			
 			licznik_odkrytych++;
-			$target.addClass('cards_1');
-			$target.removeClass('cards_0');
+			$target.addClass('cards_2');
+			$target.removeClass('cards_1');
 			$karta_1 = $target;
+			$karta_1.text(wylosowane[$karta_1.attr('id')]);
 			$karta_1.unbind('click');
 			break;
 		case 1:
 			licznik_odkrytych++;
-			$target.addClass('cards_1');
-			$target.removeClass('cards_0');
+			$target.addClass('cards_2');
+			$target.removeClass('cards_1');
 			$karta_2 = $target;
+			$karta_2.text(wylosowane[$karta_2.attr('id')]);
 			$karta_2.unbind('click');
 			
 			if ($karta_1.html() === $karta_2.html())
@@ -81,6 +84,6 @@ $( function()
 {
 	losuj_karty();
 	wypisz_wymaluj();
-	$klik = $('.cards_0');
+	$klik = $('.cards_1');
 	$klik.on('click', function(e) { odkryj(e); } );
 });
