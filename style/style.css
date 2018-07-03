@@ -75,16 +75,25 @@ ul li:first-child:hover
 {
 	width: 80%;
 	min-height: 400px;
-	margin: auto;
+	margin: 20px auto;
 }
-footer
+#result
 {
+	min-height: 390px;
 	text-align: center;
+	padding: 20px;
+	width: calc(26% - 60px);
+	display: inline-block;
+	background-color: #1a0000;
+	border: 4px solid #e60000;
+	border-radius: 40px;
+	vertical-align: text-bottom;
+	margin: 0px 2%;
 }
-#game
+#game_container
 {
-	width: 60%;
-	margin: auto;
+	width: 70%;
+	display: inline-block;
 }
 .cards_0
 {
@@ -92,10 +101,19 @@ footer
 	width: calc(25% - 10px);
 	height: 100px;
 	background-image: url("../img/tło_karty.png");
+	filter: contrast(115%);
 	margin: 5px;
 	text-align: center;
 	line-height: 100px;
 	border-radius: 16px;
+	vertical-align: text-bottom;
+	font-size: 200%;
+	opacity: 0.5;
+	transition: opacity 1s;
+}
+.cards_0:hover
+{
+	opacity: 1.0;
 }
 .cards_1
 {
@@ -105,7 +123,18 @@ footer
 {
 	width: calc(25% - 14px);
 	height: 96px;
+	filter: contrast(120%);
 	background-image: url("../img/tło_karty.png");
 	margin: 3px 5px;
 	border: 2px solid #e60000;
+	opacity: 1.0;
+}
+footer
+{
+	text-align: center;
+}
+section
+{
+	margin: 0px;
+	padding: 0px;
 }
