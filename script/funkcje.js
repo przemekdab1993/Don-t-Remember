@@ -105,21 +105,30 @@ function odkryj(e)
 			else
 			{
 				setTimeout(function() { reset_pary(); },1600);
-				punkty -= 1 * number_lvl;
+				punkty -= 2 * number_lvl;
 				wyniki(); 
 			}
 			break;
 		default:
 			break;
 	}
+	if (punkty <= 0)
+	{
+		setTimeout(function (){
+				var koniec = '<h2>Game Over</h2>Gratulacje ' + user_name + '<br />Twój wynik to: ' + rekord;
+				koniec += '<br />Jesteś na ' + '###' + ' pozycji w rankingu graczy.<br /> Twój wynik z pewnością można poprawić, więc na co czekasz.';
+				$('#main_container').html(koniec);
+				$('#main_container').addClass('koniec'); }, 1800);
+	}
 }
 function wyniki()
 {
 	$('#punkty').text(punkty);
 	
-	if (parseInt($('#punkty').text()) > parseInt($('#record_0').text()))
+	if (punkty > rekord)
 	{
-		$('#record_0').text($('#punkty').text());
+		rekord = punkty;
+		$('#record_0').text(rekord);
 	}
 	if ($('.cards_1').length == 0)
 	{
@@ -132,6 +141,14 @@ $( function()
 {
 	$('#user_name').text(user_name);
 	$('#record_0').text(rekord);
+	var $input = $('input');
+	$input.hide();
+	$input.val(user_name);
+	var $butt1 = $('#re_user_name');
+	var $butt2 = $('#poka');
+	$butt1.hide();
+	
+	$butt2.on('click', function() { $('#user_name').html(''); $input.show(); $butt2.hide(); $butt1.show(); });
 	losuj_karty();
 	wypisz_wymaluj();
 	wyniki();

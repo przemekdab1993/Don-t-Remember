@@ -12,14 +12,14 @@ body
 	text-align: center;
 	width: 60%;
 	margin: auto;
-	padding: 20px;
+	padding: 18px;
 	background-color: #1a0000;
 	border: 8px double #e60000;
 	border-radius: 50px;
 }
 #logo h1
 {
-	font-size: 300%;
+	font-size: 280%;
 	letter-spacing: 3px;
 	word-spacing: 10px;
 }
@@ -31,7 +31,6 @@ body
 }
 ul
 {
-	
 	list-style-type: none;
 	margin: 10px 0px 0px 0px;
 	padding: 0px;
@@ -100,6 +99,10 @@ ul li:first-child:hover
 	width: 70%;
 	display: inline-block;
 }
+#game
+{
+	display: bolck;
+}
 .cards_0
 {
 	display: inline-block;
@@ -138,4 +141,10 @@ footer
 {
 	text-align: center;
 	font-size: 80%;
+}
+.koniec
+{
+	font-size: 130%;
+	width: 100%;
+	text-align: center;
 }
