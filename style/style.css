@@ -6,30 +6,39 @@ body
 	color: #fff;
 	font-family: 'Chela One', cursive;
 }
+nav
+{
+	position: absolute;
+	width: 100%;
+}
 #logo
 {
 	font-family: 'Righteous', cursive;
 	text-align: center;
 	width: 60%;
-	margin: auto;
-	padding: 18px;
+	height: 128px;
+	margin: 10px auto 0px auto;
+	padding: 12px;
 	background-color: #1a0000;
 	border: 8px double #e60000;
 	border-radius: 50px;
 }
 #logo h1
 {
-	font-size: 280%;
+	font-size: 260%;
 	letter-spacing: 3px;
 	word-spacing: 10px;
+	line-height: 50px;
 }
 #logo span
 {
 	font-size: 80%;
-	padding-right: 26%;
+	margin-right: 16%;
+	padding: 2px;
 	float: right;
+	background-color: #2a0000;
 }
-ul
+#menu ul
 {
 	list-style-type: none;
 	margin: 10px 0px 0px 0px;
@@ -37,7 +46,7 @@ ul
 	display: flex;
 	background-color: #1a0000;
 }
-ul li
+#menu ul li
 {
 	text-align: center;
 	flex: 20%;
@@ -48,7 +57,7 @@ ul li
 	letter-spacing: 1px;
 	text-transform: uppercase;
 }
-ul li:first-child
+#menu ul li:first-child
 {
 	border: none;
 	border: 1px solid #1a0000;
@@ -60,7 +69,7 @@ a
 	color: #fff;
 	display: block;
 }
-ul li:hover
+#menu ul li:hover
 
 {
 	border: 1px solid #ffff00;
@@ -69,23 +78,24 @@ ul li:hover
 	padding-top: 12px;
 	border-radius: 1px;
 }
-ul li:first-child:hover
+#menu ul li:first-child:hover
 {
 	border: 1px solid #ffff00;
 	background-color: #990000;
 }
 #main_container
 {
+	max-width: 1200px;
 	width: 80%;
 	min-height: 400px;
-	margin: 20px auto;
+	margin: 70px auto 5px auto;
 }
 #result
 {
-	min-height: 390px;
+	min-height: 400px;
 	text-align: center;
-	padding: 20px;
-	width: calc(26% - 60px);
+	padding: 10px;
+	width: calc(26% - 40px);
 	display: inline-block;
 	background-color: #1a0000;
 	border: 4px solid #e60000;
@@ -94,6 +104,16 @@ ul li:first-child:hover
 	margin: 0px 2%;
 	letter-spacing: 1px;
 }
+#result ul
+{
+	margin: 40px 0px;
+	padding: 0px;
+}
+#result ul li
+{
+	list-style-type: none;
+}
+
 #game_container
 {
 	width: 70%;
@@ -105,35 +125,35 @@ ul li:first-child:hover
 }
 .cards_0
 {
-	display: inline-block;
-	width: calc(25% - 10px);
+	
+	width: calc(20% - 10px);
 	height: 100px;
-	background-image: url("../img/tło_karty.png");
 	filter: contrast(115%);
 	margin: 5px;
-	text-align: center;
-	line-height: 100px;
-	border-radius: 16px;
-	vertical-align: text-bottom;
-	font-size: 200%;
 	opacity: 0.5;
-	transition: opacity 1s;
+	transition: opacity 1s, box-shadow 1s;
 }
 .cards_0:hover
 {
 	opacity: 1.0;
+	box-shadow: 0 0 10px #737373, 0 0 10px #737373;
 }
 .cards_1
 {
 	background-image: url("../img/tło_karty.png");
+	display: inline-block;
+	text-align: center;
+	line-height: 100px;
+	border-radius: 16px;
+	vertical-align: text-bottom;
+	font-size: 200%;	
 }
 .cards_2
 {
-	width: calc(25% - 14px);
+	width: calc(20% - 14px);
 	height: 96px;
 	filter: contrast(120%);
-	background-image: url("../img/tło_karty.png");
-	margin: 3px 5px;
+	margin: 3px 3px;
 	border: 2px solid #e60000;
 	opacity: 1.0;
 }
@@ -147,4 +167,138 @@ footer
 	font-size: 130%;
 	width: 100%;
 	text-align: center;
+}
+#poka, #re_user_name
+{
+	background-color: #330000;
+	color: #fff;
+	margin-left: 6px;
+	border-radius: 10px;
+	border: 3px solid #660000;
+	outline: none;
+}
+input
+{
+	background-color: #330000;
+	color: #fff;
+	margin-left: 6px;
+	border-radius: 2px;
+	border: 2px solid #660000;
+	width: 50%;
+	outline: none;
+}
+
+/* Style tylko poniżej 900px rozdzielczości ekranu */
+@media only screen and (max-width: 900px)
+{
+	#logo
+	{
+		width: 80%;
+		padding: 10px;
+		height: 110px;
+	}
+	#logo h1
+	{
+		font-size: 260%;
+		letter-spacing: 3px;
+		word-spacing: 10px;
+		line-height: 31px;
+	}
+	#main_container
+	{
+		width: 80%;
+		margin-top: 62px;
+	}
+	#result
+	{
+		min-height: 0px;
+		margin: 10px auto;
+		padding: 10px 0px;
+		width: calc(100% - 8px);
+		display: block;
+	}
+	#result ul
+	{
+		margin: 0px;
+		padding: 0px;
+	}
+	#result ul li
+	{
+		list-style-type: none;
+		display: inline-block;
+		padding: 0px 14px;
+	}
+	#game_container
+	{
+		width: 90%;
+		display: block;
+		margin: auto;
+	}
+	.cards_1
+	{
+		line-height: 90px;
+		font-size: 180%;
+	}	
+	.cards_0
+	{
+		width: calc(20% - 6px);
+		height: 90px;
+		margin: 3px;
+	}
+	.cards_2
+	{
+		width: calc(20% - 6px);
+		height: 90px;
+		margin: 1px 1px;
+	}
+	input
+	{
+		width: 50px;
+		margin: 0px;
+		padding: 4px;
+	}
+}
+/* Style tylko poniżej 600px rozdzielczości ekranu */
+@media only screen and (max-width: 600px)
+{
+	#logo
+	{
+		width: 90%;
+		padding: 5px;
+		height: 100px;
+	}
+	#logo h1
+	{
+		word-spacing: 8px;
+		line-height: 32px;
+		font-size: 200%;
+	}
+	#main_container
+	{
+		width: 95%;
+		margin-top: 88px;
+	}
+	#result ul li#frest
+	{
+		display: block;
+		padding: 0px 17px;
+	}
+	#result ul li
+	{
+		list-style-type: none;
+		display: inline-block;
+		padding: 0px 10px;
+	}
+	#game_container
+	{
+		width: 100%;
+	}
+	.cards_1
+	{
+		font-size: 160%;
+	}	
+	input
+	{
+		padding: 2px;
+	}
 }

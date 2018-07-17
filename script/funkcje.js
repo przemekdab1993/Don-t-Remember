@@ -16,26 +16,26 @@ var rekord = 10;
 function losuj_karty()
 {	
 	wylosowane = [];
-	for (var i = 0; i < 8; i++)
+	for (var i = 0; i < 10; i++)
 	{
 		var los_1 = Math.floor(Math.random() * 14);
-		var los_2 = Math.floor(Math.random() * 16);
+		var los_2 = Math.floor(Math.random() * 20);
 		while(wylosowane[los_2] !== undefined)
 		{
 			los_2++;
-			if (los_2 > 15)
+			if (los_2 > 19)
 			{
 				los_2 = 0;
 			}
 		}
 		wylosowane[los_2] = lista_kart[los_1];
-		var los_3 = Math.floor(Math.random() * 16);
+		var los_3 = Math.floor(Math.random() * 20);
 		while(wylosowane[los_3] !== undefined)
 		{
 			los_3--;
 			if (los_3 < 0)
 			{
-				los_3 = 15;
+				los_3 = 19;
 			}
 		}
 		wylosowane[los_3] = lista_kart[los_1];
@@ -47,20 +47,20 @@ function wypisz_wymaluj()
 	$cursor.html('');
 	for (var i = 0; i < wylosowane.length; i++)
 	{
-		var buf = '<div id="' + i + '" class="cards_0 cards_1"></div>';
+		var buf = '<div id="' + i + '" class="cards_1 cards_0"></div>';
 		$cursor.append(buf);
 	}
-	$klik = $('.cards_1');
+	$klik = $('.cards_0');
 	$klik.on('click', function(e) { odkryj(e); } );
 }
 function reset_pary()
 {	
 	$karta_1.html('');
 	$karta_2.html('');
-	$karta_1.addClass('cards_1');
+	$karta_1.addClass('cards_0');
 	$karta_1.removeClass('cards_2');
 	$karta_1.on('click', function(e) { odkryj(e); } );
-	$karta_2.addClass('cards_1');
+	$karta_2.addClass('cards_0');
 	$karta_2.removeClass('cards_2');
 	$karta_2.on('click', function(e) { odkryj(e); } );
 	$karta_1 = '';
@@ -69,8 +69,8 @@ function reset_pary()
 }
 function ukrycie_pary()
 {
-	$karta_1.animate({opacity: 0.0}, 800, function() { $karta_1.unbind('click'); });
-	$karta_2.animate({opacity: 0.0}, 800, function() { $karta_2.unbind('click'); });
+	$karta_1.animate({opacity: 0.0}, 800);
+	$karta_2.animate({opacity: 0.0}, 800);
 	$karta_1 = '';
 	$karta_2 = '';
 	licznik_odkrytych = 0;
@@ -81,18 +81,18 @@ function odkryj(e)
 	switch(licznik_odkrytych)
 	{
 		case 0:
-			$target.unbind('click');
+			$target.off('click');
 			licznik_odkrytych++;
 			$target.addClass('cards_2');
-			$target.removeClass('cards_1');
+			$target.removeClass('cards_0');
 			$karta_1 = $target;
 			$karta_1.html(wylosowane[$karta_1.attr('id')]);
 			break;
 		case 1:
-			$target.unbind('click');
+			$target.off('click');
 			licznik_odkrytych++;
 			$target.addClass('cards_2');
-			$target.removeClass('cards_1');
+			$target.removeClass('cards_0');
 			$karta_2 = $target;
 			$karta_2.html(wylosowane[$karta_2.attr('id')]);
 			
@@ -106,6 +106,7 @@ function odkryj(e)
 			{
 				setTimeout(function() { reset_pary(); },1600);
 				punkty -= 2 * number_lvl;
+				if (punkty < 0) punkty = 0;
 				wyniki(); 
 			}
 			break;
@@ -130,7 +131,7 @@ function wyniki()
 		rekord = punkty;
 		$('#record_0').text(rekord);
 	}
-	if ($('.cards_1').length == 0)
+	if ($('.cards_0').length == 0)
 	{
 		losuj_karty();
 		wypisz_wymaluj();
