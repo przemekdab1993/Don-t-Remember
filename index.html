@@ -9,6 +9,7 @@
   
   <link rel="stylesheet" href="style/style.css" type="text/css" />
   <link rel="stylesheet" href="style/icons/css/fontello.css" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Chela+One|Righteous" rel="stylesheet">
   <script type="text/javascript" src="script/jquery-3.3.1.min.js"></script>
 
   <title>Don't Remember</title>
@@ -41,14 +42,24 @@
 		<div id="main_container">
 			<section>
 				<div id="result">
-					Nick: <br />
-					<span id="user_name">$$$</span><br />
-					Liczba punktów: <br />
-					<span id="punkty">0</span><br />
-					Rekord: <br />
-					<span id="record_0"></span><br />
-					level: <br />
-					<span id="number_lvl">0</span>
+					<ul>
+						<li id="frest">	
+						Nick:<br /> 
+						<span id="user_name">$$$ </span><button id="poka">#</button><input type="text" /><button id="re_user_name">!#</button>
+						</li>
+						<li>
+						Liczba punktów:<br /> 
+						<span id="punkty">0</span>
+						</li>
+						<li>
+						Rekord:<br /> 
+						<span id="record_0"></span>
+						</li>
+						<li>
+						level:<br />
+						<span id="number_lvl">0</span>
+						</li>
+					</ul>
 				</div>
 				<div id="game_container">
 					<div id="game">
@@ -58,7 +69,7 @@
 		</div>
 	</main>
 	<footer>
-		Przemysław Dąbrowski &copy; <i>v 0.2</i>
+		Przemysław Dąbrowski &copy; <i>v 0.3</i>
 	</footer>	
 	<script src="script/funkcje.js"></script>
 	<script src="script/jquery-3.3.1.min.js"></script>
