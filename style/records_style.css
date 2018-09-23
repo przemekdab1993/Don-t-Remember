@@ -1,0 +1,24 @@
+.list_records
+{
+	margin: 80px auto 0px auto;
+	width: 600px;
+}
+.list_records ol
+{
+	margin: 0px;
+	padding: 0px;
+	width: 600px;
+	
+}
+.list_records ol li
+{
+	list-style-type: none;
+	list-style-position: inside;
+	padding-left: 20px;
+}
+.list_records ol li > ul li
+{
+	display: inline-block;
+	width: 160px;
+}
+.list_records ol > li:nth-child(even) {background-color: #101010;}

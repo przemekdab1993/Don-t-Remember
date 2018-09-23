@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pl">
 
 <head>
@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <link rel="stylesheet" href="style/style.css" type="text/css" />
+  <link rel="stylesheet" href="style/records_style.css" type="text/css" />
   <link rel="stylesheet" href="style/icons/css/fontello.css" type="text/css" />
   
   <link href="https://fonts.googleapis.com/css?family=Chela+One|Righteous" rel="stylesheet">
@@ -44,31 +45,10 @@
 	<main>
 		<section>
 			<div id="main_container">
-				<div id="result">
-					<ul>
-						<li id="frest">	
-						Nick:<br /> 
-						<span id="user_name"></span><button id="poka">#</button><input type="text" /><button id="re_user_name">!#</button>
-						</li>
-						<li>
-						Liczba punktów:<br /> 
-						<span id="punkty">0</span>
-						</li>
-						<li>
-						Rekord:<br /> 
-						<span id="record_0"></span>
-						</li>
-						<li>
-						level:<br />
-						<span id="number_lvl">0</span>
-						</li>
-					</ul>
-				</div>
-				<div id="game_container">
-					<div id="start_container">
-						<h2>Razpocznij nową grę</h2>
-						<button id="start">START</button>
-					</div>
+				<div class="list_records">
+					<h1>Rekordowe wyniki graczy</h1>
+					<ol>
+					</ol>
 				</div>
 			</div>
 		</section>
@@ -76,8 +56,8 @@
 	<footer>
 		Przemysław Dąbrowski &copy; <i>v 0.4.0</i>
 	</footer>	
-	<script src="script/funkcje.js"></script>
 	<script src="script/jquery-3.3.1.min.js"></script>
+	<script src="script/f_records.js"></script>
 </body>
 
 </html>
