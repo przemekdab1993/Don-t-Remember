@@ -1,16 +1,1 @@
-[
-	{
-		"name": "ola",
-		"pkt": "1998"
-	},
-	{
-		"name": "jacek",
-		"pkt": "157"
-	},
-	{
-		"name": "przemek",
-		"pkt": "19"
-	}
-]
-
-
+[{"name":"ola","pkt":"1998"},{"name":"jacek","pkt":"157"},{"name":"yeti","pkt":17},{"name":"Bob","pkt":17},{"name":"przemek","pkt":16},{"name":"okoń","pkt":14},{"name":"yhh","pkt":13},{"name":"okoń","pkt":12},{"name":"yeti","pkt":11},{"name":"przemek","pkt":11}]

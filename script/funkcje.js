@@ -3,7 +3,7 @@ const lista_kart =  ['<i class="icon-mic-outline"></i>', '<i class="icon-mic"></
 					'<i class="icon-female"></i>', '<i class="icon-male"></i>', '<i class="icon-paw"></i>', '<i class="icon-soccer-ball"></i>',
 					'<i class="icon-bicycle"></i>', '<i class="icon-diamond"></i>'];	// zmienna z znakami na kartach
 
-var wylosowane = [];		// tablica na losowane karty do gry										
+var wylosowane;		// tablica na losowane karty do gry										
 var number_lvl = 0;			// numer poziomu stan przed rozpoczęciem gry równy 0 				
 var user_name = 'Bob';		// przypisanie nicku gracza 
 var rekord = 10;			// przypisanie standardowego rekordu punktów
@@ -11,24 +11,14 @@ var licznik_odkrytych = 0;	// licznik zliczający ile kart jest odkryte w tym mo
 var $karta_1;				// pierwsza odkryta do pary kart
 var $karta_2;				// druga dokryta do pary odkrytych
 var punkty = 10;			// początkowa ilość punktów
-var top_ten;				// najlepsze osiągnięte wyniki w kolejności od najlepszego
-
-
-
-
-		
-var $dane_wy;	
-
+var top_ten;				// najlepsze osiągnięte wyniki w kolejności od najlepszeg
 var the_best;
-
-
-
-
 
 
 // Losowane kart do tablicy "wylosowne" //
 function losuj_karty()
 {	
+	wylosowane = [];	// reset tablicy wylosowanych kart
 	let len_lista_kart = lista_kart.length;		// sprawdzanie ile jest kart w puli kart możliwych do wylosowania
 	for (let i = 0; i < 10; i++)
 	{
@@ -61,7 +51,6 @@ function losuj_karty()
 		}
 		wylosowane[los_miejsce] = lista_kart[los_karta];	// przypisanie wylosowaniej karcie miejsce w tablicy kart
 	}
-	number_lvl++;	//zwiększenie o 1 numeru poziomu gry
 }
 
 // Wyświetlenie wylosowanej tablicy kart //
@@ -155,38 +144,67 @@ function odkryj(e)
 	}
 }
 
+// Pobieranie danych z pliku "top_ten.json" - lista najlepszych wyników 
+function set_top_ten()
+{
+	$.getJSON('data/top_ten.json')
+	.done( function(data) {
+		top_ten = data;
+	}).fail( function() {
+		$('.list_records').html("Przepraszamy za utrudnienia. Prosimy spróbować ponownie innym razem");
+	});
+}
+
 // Koniec gry jeśli punkty spadną do zera lub po naciśnięciu przycisku "koniec gry" //
 function koniec_gry() 
 {
+	var buf_list;	// zmienna na dane do zapisu do pliku top_ten.json
 	
-	// zapis do pliku listy rekordów
-	function zapis_nowej_listy_rekord()
-	{
-		let buf_list;
-		
-		//	skracanie listy rekordów do 10 pozycji
-		if  (top_ten.length > 10)
-		{
-			top_ten.slice(0, 10);
-		}
-		buf_list = JSON.stringify(top_ten);
-	}
-	
+	set_top_ten();
 	let t_t_length = top_ten.length;	// liość zapisanych rekordów 
 	
-	// dopisywanie nowego wyniku do listy rekordów w odpowiednim miejscu
+	// dopisywanie nowego wyniku do listy 10 najlepszych wyników 
 	for (let i = t_t_length - 1; i >= 0; i--)
 	{
-		if (rekord <= top_ten[i]['pkt'])
+		if (rekord <= parseInt(top_ten[i]['pkt']))
 		{
 			let buf = {'name': user_name, 'pkt': rekord};
-			top_ten.splice(i, 0, buf);
+			if(i == --t_t_length)
+			{
+				top_ten.push(buf);
+			}
+			else
+			{
+				top_ten.splice(++i, 0, buf);
+			}
 			zapis_nowej_listy_rekord();
 			break;
 		}	
 	}
 	
+	// zapis do pliku listy rekordów
+	function zapis_nowej_listy_rekord()
+	{
+		//	skracanie listy najlepszych wyników do 10 pozycji
+		if  (top_ten.length > 10)
+		{
+			top_ten = top_ten.slice(0, 10);
+		}
+		buf_list = JSON.stringify(top_ten);
+	}
+	
+	// wysłanie listy najlepszych wyników do funkcji zapisującej dane do pliku
+	$.ajax({
+	  method: "POST",
+	  url: "save.php",
+	  data: {data : buf_list}
+	  })
+	.done(function( data ) {
+    alert( "Data Saved" + data);
+  });
+	
 	let text_koniec; // komunikat końca gry z osiągnientym wynikiem
+	
 	text_koniec += '<h2>Game Over</h2>Gratulacje ' + user_name + '<br />Twój wynik to: ' + rekord;
 	if (rekord > the_best)
 	{
@@ -213,8 +231,10 @@ function wyniki()
 	}
 	if ($('.cards_0').length == 0)
 	{
+		number_lvl++;	//zwiększenie o 1 numeru poziomu gry
 		losuj_karty();
 		wypisz_wymaluj();
+		
 	}
 	$('#number_lvl').text(number_lvl);
 }
@@ -231,13 +251,7 @@ $( function() {
 		}
 	});
 	
-	// wczytanie danych z pliku
-	$.getJSON('data/top_ten.json')
-	.done( function(data) {
-		top_ten = data;
-	}).fail( function() {
-		$('.list_records').html("Przepraszamy za utrudnienia. Prosimy spróbować ponownie innym razem");
-	});
+	set_top_ten();
 	
 	// podmiana nicku jeżeli w zapisany jest on zmiennej sesyjnej
 	if( sessionStorage.getItem('DNR_user_name'))
@@ -299,6 +313,7 @@ $( function() {
 	
 	// rozpoczęcie nowej gry
 	$('#start').on('click', function() {
+		number_lvl++;	//zwiększenie o 1 numeru poziomu gry
 		losuj_karty();
 		wypisz_wymaluj();
 		wyniki();
@@ -309,4 +324,6 @@ $( function() {
 			$('#menu_koniec').off('click'); 
 		});
 	});
+	
+	$('[href=rekordowe_wyniki]').on('click', function() { set_top_ten(); });
 });

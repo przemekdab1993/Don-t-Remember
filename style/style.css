@@ -242,6 +242,10 @@ input
 		word-spacing: 10px;
 		line-height: 31px;
 	}
+	#menu ul li
+	{
+		font-size: 95%;
+	}
 	#main_container
 	{
 		width: 80%;
